@@ -66,3 +66,4 @@ If you plan to generate new RTL modules and run partial synthesis:
   Adjust the grids in GridSearchCV to explore different ranges for Random Forest, Gradient Boosting, or Decision Tree.
 
 
+Hope you liked my analysis of the problem and I would love to hear your feedback and suggestions.
