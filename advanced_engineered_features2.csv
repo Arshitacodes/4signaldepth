@@ -1,0 +1,1164 @@
+module,template,rtl_code,template,num_inputs,num_gates,expected_ff,expected_comb_depth,or_tree_levels,clock_domains,num_pipeline_stages,combinational_depth,flip_flops,fan_in,fan_out,total_gate_count,fan_in_out_ratio,logic_complexity_ratio,pipeline_stage_count,used_comb_depth,estimated_delay,ff_to_gate_ratio,delay_to_fanout_ratio,fan_in_fan_out_product,weighted_complexity
+comb_1321,simple_comb,"module comb_1321(in0, in1, out);
+  input in0, in1;
+  output out;
+  wire w0;
+  wire w1;
+  wire w2;
+  wire w3;
+  wire w4;
+  nor g0(w0, in1, in0);
+  and g1(w1, w0, in0);
+  xor g2(w2, w1, in0);
+  or g3(w3, w2, in1);
+  and g4(w4, w3, in1);
+  assign out = w4;
+endmodule
+",simple_comb,2,5.0,0,5,,,,5,0,1,2,2,0.5,2.0,1.0,5,5.5,0.0,2.75,2,11.0
+fanin_7913,high_fanin,"module fanin_7913(in0, in1, in2, in3, in4, in5, in6, in7, in8, in9, in10, in11, in12, out);
+  input in0, in1, in2, in3, in4, in5, in6, in7, in8, in9, in10, in11, in12;
+  output out;
+  wire w_0_0;
+  or g_0_0(w_0_0, in0, in1);
+  wire w_0_1;
+  or g_0_1(w_0_1, in2, in3);
+  wire w_0_2;
+  or g_0_2(w_0_2, in4, in5);
+  wire w_0_3;
+  or g_0_3(w_0_3, in6, in7);
+  wire w_0_4;
+  or g_0_4(w_0_4, in8, in9);
+  wire w_0_5;
+  or g_0_5(w_0_5, in10, in11);
+  wire w_1_0;
+  or g_1_0(w_1_0, w_0_0, w_0_1);
+  wire w_1_1;
+  or g_1_1(w_1_1, w_0_2, w_0_3);
+  wire w_1_2;
+  or g_1_2(w_1_2, w_0_4, w_0_5);
+  wire w_2_0;
+  or g_2_0(w_2_0, w_1_0, w_1_1);
+  wire w_2_1;
+  or g_2_1(w_2_1, w_1_2, in12);
+  wire w_3_0;
+  or g_3_0(w_3_0, w_2_0, w_2_1);
+  assign out = w_3_0;
+endmodule
+",high_fanin,13,,0,4,4.0,,,4,0,1,2,12,0.5,12.0,1.0,4,4.5,0.0,2.25,2,54.0
+multiclk_8124,multi_clock,"module multiclk_8124(in0, in1, in2, clk1, clk2, reset, out);
+  input clk1, clk2, reset;
+  input in0, in1, in2;
+  output out;
+  wire comb1;
+  or g0(comb1, in0, in1);
+  reg reg1;
+  always @(posedge clk1 or posedge reset) begin
+    if (reset) reg1 <= 0;
+    else reg1 <= comb1;
+  end
+  reg cross_domain;
+  always @(posedge clk2 or posedge reset) begin
+    if (reset) cross_domain <= 0;
+    else cross_domain <= reg1;
+  end
+  assign out = cross_domain;
+endmodule
+",multi_clock,3,,2,1,,2.0,,1,2,4,2,3,2.0,1.5,1.0,1,1.5,0.6666666666666666,0.75,8,2.25
+multiclk_9996,multi_clock,"module multiclk_9996(in0, in1, in2, in3, clk1, clk2, reset, out);
+  input clk1, clk2, reset;
+  input in0, in1, in2, in3;
+  output out;
+  wire comb1;
+  or g0(comb1, in1, in1);
+  reg reg1;
+  always @(posedge clk1 or posedge reset) begin
+    if (reset) reg1 <= 0;
+    else reg1 <= comb1;
+  end
+  reg cross_domain;
+  always @(posedge clk2 or posedge reset) begin
+    if (reset) cross_domain <= 0;
+    else cross_domain <= reg1;
+  end
+  assign out = cross_domain;
+endmodule
+",multi_clock,4,,2,1,,2.0,,1,2,3,1,2,3.0,1.0,1.0,1,1.5,1.0,1.5,3,1.5
+comb_8804,simple_comb,"module comb_8804(in0, in1, in2, in3, out);
+  input in0, in1, in2, in3;
+  output out;
+  wire w0;
+  wire w1;
+  wire w2;
+  nand g0(w0, in3, in1);
+  xor g1(w1, w0, in3);
+  nor g2(w2, w1, in2);
+  assign out = w2;
+endmodule
+",simple_comb,4,3.0,0,3,,,,3,0,1,1,2,1.0,2.0,1.0,3,3.5,0.0,3.5,1,7.0
+comb_1987,simple_comb,"module comb_1987(in0, in1, out);
+  input in0, in1;
+  output out;
+  wire w0;
+  wire w1;
+  wire w2;
+  wire w3;
+  wire w4;
+  wire w5;
+  and g0(w0, in0, in1);
+  nand g1(w1, w0, in0);
+  nand g2(w2, w1, in1);
+  or g3(w3, w2, in1);
+  xor g4(w4, w3, in1);
+  xor g5(w5, w4, in1);
+  assign out = w5;
+endmodule
+",simple_comb,2,6.0,0,6,,,,6,0,4,2,2,2.0,2.0,1.0,6,6.5,0.0,3.25,8,13.0
+multiclk_7058,multi_clock,"module multiclk_7058(in0, in1, in2, in3, clk1, clk2, reset, out);
+  input clk1, clk2, reset;
+  input in0, in1, in2, in3;
+  output out;
+  wire comb1;
+  xor g0(comb1, in1, in3);
+  reg reg1;
+  always @(posedge clk1 or posedge reset) begin
+    if (reset) reg1 <= 0;
+    else reg1 <= comb1;
+  end
+  reg cross_domain;
+  always @(posedge clk2 or posedge reset) begin
+    if (reset) cross_domain <= 0;
+    else cross_domain <= reg1;
+  end
+  assign out = cross_domain;
+endmodule
+",multi_clock,4,,2,1,,2.0,,1,2,3,2,3,1.5,1.5,1.0,1,1.5,0.6666666666666666,0.75,6,2.25
+multiclk_3874,multi_clock,"module multiclk_3874(in0, in1, in2, clk1, clk2, reset, out);
+  input clk1, clk2, reset;
+  input in0, in1, in2;
+  output out;
+  wire comb1;
+  xor g0(comb1, in1, in0);
+  reg reg1;
+  always @(posedge clk1 or posedge reset) begin
+    if (reset) reg1 <= 0;
+    else reg1 <= comb1;
+  end
+  reg cross_domain;
+  always @(posedge clk2 or posedge reset) begin
+    if (reset) cross_domain <= 0;
+    else cross_domain <= reg1;
+  end
+  assign out = cross_domain;
+endmodule
+",multi_clock,3,,2,1,,2.0,,1,2,4,3,3,1.3333333333333333,1.5,1.0,1,1.5,0.6666666666666666,0.5,12,2.25
+pipe_5204,deep_pipeline,"module pipe_5204(in0, in1, in2, clk, reset, out);
+  input clk, reset;
+  input in0, in1, in2;
+  output out;
+  wire stage0;
+  and g0(stage0, in0, in0);
+  reg stage1_ff;
+  always @(posedge clk or posedge reset) begin
+    if (reset) stage1_ff <= 0;
+    else stage1_ff <= stage0;
+  end
+  wire stage1;
+  nand g1(stage1, stage1_ff, in0);
+  reg stage2_ff;
+  always @(posedge clk or posedge reset) begin
+    if (reset) stage2_ff <= 0;
+    else stage2_ff <= stage1_ff;
+  end
+  wire stage2;
+  or g2(stage2, stage2_ff, in1);
+  reg stage3_ff;
+  always @(posedge clk or posedge reset) begin
+    if (reset) stage3_ff <= 0;
+    else stage3_ff <= stage2_ff;
+  end
+  wire stage3;
+  nor g3(stage3, stage3_ff, in1);
+  reg stage4_ff;
+  always @(posedge clk or posedge reset) begin
+    if (reset) stage4_ff <= 0;
+    else stage4_ff <= stage3_ff;
+  end
+  wire stage4;
+  nand g4(stage4, stage4_ff, in2);
+  reg stage5_ff;
+  always @(posedge clk or posedge reset) begin
+    if (reset) stage5_ff <= 0;
+    else stage5_ff <= stage4_ff;
+  end
+  wire stage5;
+  nor g5(stage5, stage5_ff, in1);
+  assign out = stage5;
+endmodule
+",deep_pipeline,3,,6,6,,,6.0,6,6,1,3,6,0.3333333333333333,1.0,6.0,6,9.0,1.0,3.0,3,9.0
+fanin_5443,high_fanin,"module fanin_5443(in0, in1, in2, in3, in4, in5, in6, in7, in8, in9, in10, in11, in12, in13, out);
+  input in0, in1, in2, in3, in4, in5, in6, in7, in8, in9, in10, in11, in12, in13;
+  output out;
+  wire w_0_0;
+  or g_0_0(w_0_0, in0, in1);
+  wire w_0_1;
+  or g_0_1(w_0_1, in2, in3);
+  wire w_0_2;
+  or g_0_2(w_0_2, in4, in5);
+  wire w_0_3;
+  or g_0_3(w_0_3, in6, in7);
+  wire w_0_4;
+  or g_0_4(w_0_4, in8, in9);
+  wire w_0_5;
+  or g_0_5(w_0_5, in10, in11);
+  wire w_0_6;
+  or g_0_6(w_0_6, in12, in13);
+  wire w_1_0;
+  or g_1_0(w_1_0, w_0_0, w_0_1);
+  wire w_1_1;
+  or g_1_1(w_1_1, w_0_2, w_0_3);
+  wire w_1_2;
+  or g_1_2(w_1_2, w_0_4, w_0_5);
+  wire w_2_0;
+  or g_2_0(w_2_0, w_1_0, w_1_1);
+  wire w_2_1;
+  or g_2_1(w_2_1, w_1_2, w_0_6);
+  wire w_3_0;
+  or g_3_0(w_3_0, w_2_0, w_2_1);
+  assign out = w_3_0;
+endmodule
+",high_fanin,14,,0,4,4.0,,,4,0,3,3,13,1.0,13.0,1.0,4,4.5,0.0,1.5,9,58.5
+comb_1015,simple_comb,"module comb_1015(in0, in1, in2, out);
+  input in0, in1, in2;
+  output out;
+  wire w0;
+  wire w1;
+  wire w2;
+  wire w3;
+  wire w4;
+  wire w5;
+  wire w6;
+  wire w7;
+  nor g0(w0, in2, in2);
+  and g1(w1, w0, in0);
+  xor g2(w2, w1, in2);
+  and g3(w3, w2, in2);
+  nand g4(w4, w3, in1);
+  or g5(w5, w4, in1);
+  nor g6(w6, w5, in2);
+  nor g7(w7, w6, in1);
+  assign out = w7;
+endmodule
+",simple_comb,3,8.0,0,8,,,,8,0,2,3,8,0.6666666666666666,8.0,1.0,8,8.5,0.0,2.8333333333333335,6,68.0
+comb_6199,simple_comb,"module comb_6199(in0, in1, in2, in3, in4, out);
+  input in0, in1, in2, in3, in4;
+  output out;
+  wire w0;
+  wire w1;
+  wire w2;
+  wire w3;
+  wire w4;
+  wire w5;
+  wire w6;
+  wire w7;
+  and g0(w0, in3, in1);
+  nor g1(w1, w0, in2);
+  and g2(w2, w1, in1);
+  and g3(w3, w2, in2);
+  and g4(w4, w3, in3);
+  xor g5(w5, w4, in2);
+  and g6(w6, w5, in1);
+  nor g7(w7, w6, in3);
+  assign out = w7;
+endmodule
+",simple_comb,5,8.0,0,8,,,,8,0,1,4,9,0.25,9.0,1.0,8,8.5,0.0,2.125,4,76.5
+pipe_1051,deep_pipeline,"module pipe_1051(in0, in1, clk, reset, out);
+  input clk, reset;
+  input in0, in1;
+  output out;
+  wire stage0;
+  or g0(stage0, in1, in0);
+  reg stage1_ff;
+  always @(posedge clk or posedge reset) begin
+    if (reset) stage1_ff <= 0;
+    else stage1_ff <= stage0;
+  end
+  wire stage1;
+  nand g1(stage1, stage1_ff, in0);
+  reg stage2_ff;
+  always @(posedge clk or posedge reset) begin
+    if (reset) stage2_ff <= 0;
+    else stage2_ff <= stage1_ff;
+  end
+  wire stage2;
+  xor g2(stage2, stage2_ff, in1);
+  reg stage3_ff;
+  always @(posedge clk or posedge reset) begin
+    if (reset) stage3_ff <= 0;
+    else stage3_ff <= stage2_ff;
+  end
+  wire stage3;
+  nand g3(stage3, stage3_ff, in1);
+  reg stage4_ff;
+  always @(posedge clk or posedge reset) begin
+    if (reset) stage4_ff <= 0;
+    else stage4_ff <= stage3_ff;
+  end
+  wire stage4;
+  and g4(stage4, stage4_ff, in0);
+  reg stage5_ff;
+  always @(posedge clk or posedge reset) begin
+    if (reset) stage5_ff <= 0;
+    else stage5_ff <= stage4_ff;
+  end
+  wire stage5;
+  nand g5(stage5, stage5_ff, in1);
+  reg stage6_ff;
+  always @(posedge clk or posedge reset) begin
+    if (reset) stage6_ff <= 0;
+    else stage6_ff <= stage5_ff;
+  end
+  wire stage6;
+  nor g6(stage6, stage6_ff, in0);
+  assign out = stage6;
+endmodule
+",deep_pipeline,2,,7,7,,,7.0,7,7,1,4,8,0.25,1.1428571428571428,7.0,7,10.5,0.875,2.625,4,12.0
+fanin_4101,high_fanin,"module fanin_4101(in0, in1, in2, in3, in4, in5, in6, in7, in8, out);
+  input in0, in1, in2, in3, in4, in5, in6, in7, in8;
+  output out;
+  wire w_0_0;
+  or g_0_0(w_0_0, in0, in1);
+  wire w_0_1;
+  or g_0_1(w_0_1, in2, in3);
+  wire w_0_2;
+  or g_0_2(w_0_2, in4, in5);
+  wire w_0_3;
+  or g_0_3(w_0_3, in6, in7);
+  wire w_1_0;
+  or g_1_0(w_1_0, w_0_0, w_0_1);
+  wire w_1_1;
+  or g_1_1(w_1_1, w_0_2, w_0_3);
+  wire w_2_0;
+  or g_2_0(w_2_0, w_1_0, w_1_1);
+  wire w_3_0;
+  or g_3_0(w_3_0, w_2_0, in8);
+  assign out = w_3_0;
+endmodule
+",high_fanin,9,,0,4,4.0,,,4,0,1,1,8,1.0,8.0,1.0,4,4.5,0.0,4.5,1,36.0
+multiclk_3336,multi_clock,"module multiclk_3336(in0, in1, clk1, clk2, reset, out);
+  input clk1, clk2, reset;
+  input in0, in1;
+  output out;
+  wire comb1;
+  nand g0(comb1, in1, in0);
+  reg reg1;
+  always @(posedge clk1 or posedge reset) begin
+    if (reset) reg1 <= 0;
+    else reg1 <= comb1;
+  end
+  reg cross_domain;
+  always @(posedge clk2 or posedge reset) begin
+    if (reset) cross_domain <= 0;
+    else cross_domain <= reg1;
+  end
+  assign out = cross_domain;
+endmodule
+",multi_clock,2,,2,1,,2.0,,1,2,4,1,3,4.0,1.5,1.0,1,1.5,0.6666666666666666,1.5,4,2.25
+multiclk_5110,multi_clock,"module multiclk_5110(in0, in1, in2, clk1, clk2, reset, out);
+  input clk1, clk2, reset;
+  input in0, in1, in2;
+  output out;
+  wire comb1;
+  nor g0(comb1, in0, in2);
+  reg reg1;
+  always @(posedge clk1 or posedge reset) begin
+    if (reset) reg1 <= 0;
+    else reg1 <= comb1;
+  end
+  reg cross_domain;
+  always @(posedge clk2 or posedge reset) begin
+    if (reset) cross_domain <= 0;
+    else cross_domain <= reg1;
+  end
+  assign out = cross_domain;
+endmodule
+",multi_clock,3,,2,1,,2.0,,1,2,3,1,3,3.0,1.5,1.0,1,1.5,0.6666666666666666,1.5,3,2.25
+pipe_7979,deep_pipeline,"module pipe_7979(in0, in1, clk, reset, out);
+  input clk, reset;
+  input in0, in1;
+  output out;
+  wire stage0;
+  xor g0(stage0, in1, in1);
+  reg stage1_ff;
+  always @(posedge clk or posedge reset) begin
+    if (reset) stage1_ff <= 0;
+    else stage1_ff <= stage0;
+  end
+  wire stage1;
+  xor g1(stage1, stage1_ff, in0);
+  reg stage2_ff;
+  always @(posedge clk or posedge reset) begin
+    if (reset) stage2_ff <= 0;
+    else stage2_ff <= stage1_ff;
+  end
+  wire stage2;
+  or g2(stage2, stage2_ff, in0);
+  reg stage3_ff;
+  always @(posedge clk or posedge reset) begin
+    if (reset) stage3_ff <= 0;
+    else stage3_ff <= stage2_ff;
+  end
+  wire stage3;
+  nand g3(stage3, stage3_ff, in0);
+  reg stage4_ff;
+  always @(posedge clk or posedge reset) begin
+    if (reset) stage4_ff <= 0;
+    else stage4_ff <= stage3_ff;
+  end
+  wire stage4;
+  xor g4(stage4, stage4_ff, in1);
+  assign out = stage4;
+endmodule
+",deep_pipeline,2,,5,5,,,5.0,5,5,2,2,0,1.0,0.0,5.0,5,7.5,,3.75,4,0.0
+multiclk_1336,multi_clock,"module multiclk_1336(in0, in1, in2, clk1, clk2, reset, out);
+  input clk1, clk2, reset;
+  input in0, in1, in2;
+  output out;
+  wire comb1;
+  nand g0(comb1, in1, in2);
+  reg reg1;
+  always @(posedge clk1 or posedge reset) begin
+    if (reset) reg1 <= 0;
+    else reg1 <= comb1;
+  end
+  reg cross_domain;
+  always @(posedge clk2 or posedge reset) begin
+    if (reset) cross_domain <= 0;
+    else cross_domain <= reg1;
+  end
+  assign out = cross_domain;
+endmodule
+",multi_clock,3,,2,1,,2.0,,1,2,1,2,3,0.5,1.5,1.0,1,1.5,0.6666666666666666,0.75,2,2.25
+multiclk_4901,multi_clock,"module multiclk_4901(in0, in1, clk1, clk2, reset, out);
+  input clk1, clk2, reset;
+  input in0, in1;
+  output out;
+  wire comb1;
+  nor g0(comb1, in1, in0);
+  reg reg1;
+  always @(posedge clk1 or posedge reset) begin
+    if (reset) reg1 <= 0;
+    else reg1 <= comb1;
+  end
+  reg cross_domain;
+  always @(posedge clk2 or posedge reset) begin
+    if (reset) cross_domain <= 0;
+    else cross_domain <= reg1;
+  end
+  assign out = cross_domain;
+endmodule
+",multi_clock,2,,2,1,,2.0,,1,2,4,2,3,2.0,1.5,1.0,1,1.5,0.6666666666666666,0.75,8,2.25
+fanin_4146,high_fanin,"module fanin_4146(in0, in1, in2, in3, in4, in5, in6, in7, in8, in9, out);
+  input in0, in1, in2, in3, in4, in5, in6, in7, in8, in9;
+  output out;
+  wire w_0_0;
+  or g_0_0(w_0_0, in0, in1);
+  wire w_0_1;
+  or g_0_1(w_0_1, in2, in3);
+  wire w_0_2;
+  or g_0_2(w_0_2, in4, in5);
+  wire w_0_3;
+  or g_0_3(w_0_3, in6, in7);
+  wire w_0_4;
+  or g_0_4(w_0_4, in8, in9);
+  wire w_1_0;
+  or g_1_0(w_1_0, w_0_0, w_0_1);
+  wire w_1_1;
+  or g_1_1(w_1_1, w_0_2, w_0_3);
+  wire w_2_0;
+  or g_2_0(w_2_0, w_1_0, w_1_1);
+  wire w_3_0;
+  or g_3_0(w_3_0, w_2_0, w_0_4);
+  assign out = w_3_0;
+endmodule
+",high_fanin,10,,0,4,4.0,,,4,0,3,3,9,1.0,9.0,1.0,4,4.5,0.0,1.5,9,40.5
+comb_5806,simple_comb,"module comb_5806(in0, in1, in2, in3, in4, out);
+  input in0, in1, in2, in3, in4;
+  output out;
+  wire w0;
+  wire w1;
+  wire w2;
+  wire w3;
+  wire w4;
+  nor g0(w0, in0, in1);
+  and g1(w1, w0, in1);
+  or g2(w2, w1, in0);
+  xor g3(w3, w2, in2);
+  nor g4(w4, w3, in0);
+  assign out = w4;
+endmodule
+",simple_comb,5,5.0,0,5,,,,5,0,1,2,5,0.5,5.0,1.0,5,5.5,0.0,2.75,2,27.5
+fanin_9621,high_fanin,"module fanin_9621(in0, in1, in2, in3, in4, in5, in6, in7, in8, in9, in10, in11, out);
+  input in0, in1, in2, in3, in4, in5, in6, in7, in8, in9, in10, in11;
+  output out;
+  wire w_0_0;
+  or g_0_0(w_0_0, in0, in1);
+  wire w_0_1;
+  or g_0_1(w_0_1, in2, in3);
+  wire w_0_2;
+  or g_0_2(w_0_2, in4, in5);
+  wire w_0_3;
+  or g_0_3(w_0_3, in6, in7);
+  wire w_0_4;
+  or g_0_4(w_0_4, in8, in9);
+  wire w_0_5;
+  or g_0_5(w_0_5, in10, in11);
+  wire w_1_0;
+  or g_1_0(w_1_0, w_0_0, w_0_1);
+  wire w_1_1;
+  or g_1_1(w_1_1, w_0_2, w_0_3);
+  wire w_1_2;
+  or g_1_2(w_1_2, w_0_4, w_0_5);
+  wire w_2_0;
+  or g_2_0(w_2_0, w_1_0, w_1_1);
+  wire w_3_0;
+  or g_3_0(w_3_0, w_2_0, w_1_2);
+  assign out = w_3_0;
+endmodule
+",high_fanin,12,,0,4,4.0,,,4,0,4,3,11,1.3333333333333333,11.0,1.0,4,4.5,0.0,1.5,12,49.5
+pipe_9355,deep_pipeline,"module pipe_9355(in0, in1, in2, clk, reset, out);
+  input clk, reset;
+  input in0, in1, in2;
+  output out;
+  wire stage0;
+  xor g0(stage0, in1, in2);
+  reg stage1_ff;
+  always @(posedge clk or posedge reset) begin
+    if (reset) stage1_ff <= 0;
+    else stage1_ff <= stage0;
+  end
+  wire stage1;
+  and g1(stage1, stage1_ff, in0);
+  reg stage2_ff;
+  always @(posedge clk or posedge reset) begin
+    if (reset) stage2_ff <= 0;
+    else stage2_ff <= stage1_ff;
+  end
+  wire stage2;
+  or g2(stage2, stage2_ff, in0);
+  assign out = stage2;
+endmodule
+",deep_pipeline,3,,3,3,,,3.0,3,3,1,3,4,0.3333333333333333,1.3333333333333333,3.0,3,4.5,0.75,1.5,3,6.0
+comb_4920,simple_comb,"module comb_4920(in0, in1, out);
+  input in0, in1;
+  output out;
+  wire w0;
+  wire w1;
+  wire w2;
+  wire w3;
+  wire w4;
+  xor g0(w0, in1, in0);
+  xor g1(w1, w0, in0);
+  and g2(w2, w1, in1);
+  or g3(w3, w2, in1);
+  nand g4(w4, w3, in0);
+  assign out = w4;
+endmodule
+",simple_comb,2,5.0,0,5,,,,5,0,1,1,1,1.0,1.0,1.0,5,5.5,0.0,5.5,1,5.5
+comb_7429,simple_comb,"module comb_7429(in0, in1, in2, out);
+  input in0, in1, in2;
+  output out;
+  wire w0;
+  wire w1;
+  wire w2;
+  nand g0(w0, in0, in0);
+  xor g1(w1, w0, in2);
+  nor g2(w2, w1, in0);
+  assign out = w2;
+endmodule
+",simple_comb,3,3.0,0,3,,,,3,0,2,4,1,0.5,1.0,1.0,3,3.5,0.0,0.875,8,3.5
+multiclk_8285,multi_clock,"module multiclk_8285(in0, in1, in2, in3, clk1, clk2, reset, out);
+  input clk1, clk2, reset;
+  input in0, in1, in2, in3;
+  output out;
+  wire comb1;
+  or g0(comb1, in0, in2);
+  reg reg1;
+  always @(posedge clk1 or posedge reset) begin
+    if (reset) reg1 <= 0;
+    else reg1 <= comb1;
+  end
+  reg cross_domain;
+  always @(posedge clk2 or posedge reset) begin
+    if (reset) cross_domain <= 0;
+    else cross_domain <= reg1;
+  end
+  assign out = cross_domain;
+endmodule
+",multi_clock,4,,2,1,,2.0,,1,2,2,2,3,1.0,1.5,1.0,1,1.5,0.6666666666666666,0.75,4,2.25
+multiclk_1932,multi_clock,"module multiclk_1932(in0, in1, in2, clk1, clk2, reset, out);
+  input clk1, clk2, reset;
+  input in0, in1, in2;
+  output out;
+  wire comb1;
+  nor g0(comb1, in2, in0);
+  reg reg1;
+  always @(posedge clk1 or posedge reset) begin
+    if (reset) reg1 <= 0;
+    else reg1 <= comb1;
+  end
+  reg cross_domain;
+  always @(posedge clk2 or posedge reset) begin
+    if (reset) cross_domain <= 0;
+    else cross_domain <= reg1;
+  end
+  assign out = cross_domain;
+endmodule
+",multi_clock,3,,2,1,,2.0,,1,2,1,2,3,0.5,1.5,1.0,1,1.5,0.6666666666666666,0.75,2,2.25
+comb_2416,simple_comb,"module comb_2416(in0, in1, in2, in3, in4, out);
+  input in0, in1, in2, in3, in4;
+  output out;
+  wire w0;
+  wire w1;
+  wire w2;
+  wire w3;
+  wire w4;
+  wire w5;
+  and g0(w0, in2, in3);
+  nand g1(w1, w0, in4);
+  xor g2(w2, w1, in1);
+  nor g3(w3, w2, in3);
+  xor g4(w4, w3, in3);
+  nand g5(w5, w4, in0);
+  assign out = w5;
+endmodule
+",simple_comb,5,6.0,0,6,,,,6,0,4,1,5,4.0,5.0,1.0,6,6.5,0.0,6.5,4,32.5
+multiclk_1841,multi_clock,"module multiclk_1841(in0, in1, clk1, clk2, reset, out);
+  input clk1, clk2, reset;
+  input in0, in1;
+  output out;
+  wire comb1;
+  or g0(comb1, in0, in1);
+  reg reg1;
+  always @(posedge clk1 or posedge reset) begin
+    if (reset) reg1 <= 0;
+    else reg1 <= comb1;
+  end
+  reg cross_domain;
+  always @(posedge clk2 or posedge reset) begin
+    if (reset) cross_domain <= 0;
+    else cross_domain <= reg1;
+  end
+  assign out = cross_domain;
+endmodule
+",multi_clock,2,,2,1,,2.0,,1,2,1,1,3,1.0,1.5,1.0,1,1.5,0.6666666666666666,1.5,1,2.25
+fanin_4059,high_fanin,"module fanin_4059(in0, in1, in2, in3, in4, in5, in6, in7, out);
+  input in0, in1, in2, in3, in4, in5, in6, in7;
+  output out;
+  wire w_0_0;
+  or g_0_0(w_0_0, in0, in1);
+  wire w_0_1;
+  or g_0_1(w_0_1, in2, in3);
+  wire w_0_2;
+  or g_0_2(w_0_2, in4, in5);
+  wire w_0_3;
+  or g_0_3(w_0_3, in6, in7);
+  wire w_1_0;
+  or g_1_0(w_1_0, w_0_0, w_0_1);
+  wire w_1_1;
+  or g_1_1(w_1_1, w_0_2, w_0_3);
+  wire w_2_0;
+  or g_2_0(w_2_0, w_1_0, w_1_1);
+  assign out = w_2_0;
+endmodule
+",high_fanin,8,,0,3,3.0,,,3,0,4,3,7,1.3333333333333333,7.0,1.0,3,3.5,0.0,1.1666666666666667,12,24.5
+pipe_4337,deep_pipeline,"module pipe_4337(in0, in1, in2, in3, clk, reset, out);
+  input clk, reset;
+  input in0, in1, in2, in3;
+  output out;
+  wire stage0;
+  nand g0(stage0, in1, in3);
+  reg stage1_ff;
+  always @(posedge clk or posedge reset) begin
+    if (reset) stage1_ff <= 0;
+    else stage1_ff <= stage0;
+  end
+  wire stage1;
+  nand g1(stage1, stage1_ff, in3);
+  reg stage2_ff;
+  always @(posedge clk or posedge reset) begin
+    if (reset) stage2_ff <= 0;
+    else stage2_ff <= stage1_ff;
+  end
+  wire stage2;
+  nor g2(stage2, stage2_ff, in2);
+  reg stage3_ff;
+  always @(posedge clk or posedge reset) begin
+    if (reset) stage3_ff <= 0;
+    else stage3_ff <= stage2_ff;
+  end
+  wire stage3;
+  xor g3(stage3, stage3_ff, in0);
+  assign out = stage3;
+endmodule
+",deep_pipeline,4,,4,4,,,4.0,4,4,4,4,5,1.0,1.25,4.0,4,6.0,0.8,1.5,16,7.5
+fanin_9888,high_fanin,"module fanin_9888(in0, in1, in2, in3, in4, in5, in6, in7, out);
+  input in0, in1, in2, in3, in4, in5, in6, in7;
+  output out;
+  wire w_0_0;
+  or g_0_0(w_0_0, in0, in1);
+  wire w_0_1;
+  or g_0_1(w_0_1, in2, in3);
+  wire w_0_2;
+  or g_0_2(w_0_2, in4, in5);
+  wire w_0_3;
+  or g_0_3(w_0_3, in6, in7);
+  wire w_1_0;
+  or g_1_0(w_1_0, w_0_0, w_0_1);
+  wire w_1_1;
+  or g_1_1(w_1_1, w_0_2, w_0_3);
+  wire w_2_0;
+  or g_2_0(w_2_0, w_1_0, w_1_1);
+  assign out = w_2_0;
+endmodule
+",high_fanin,8,,0,3,3.0,,,3,0,3,1,7,3.0,7.0,1.0,3,3.5,0.0,3.5,3,24.5
+pipe_2975,deep_pipeline,"module pipe_2975(in0, in1, in2, in3, clk, reset, out);
+  input clk, reset;
+  input in0, in1, in2, in3;
+  output out;
+  wire stage0;
+  nand g0(stage0, in2, in3);
+  reg stage1_ff;
+  always @(posedge clk or posedge reset) begin
+    if (reset) stage1_ff <= 0;
+    else stage1_ff <= stage0;
+  end
+  wire stage1;
+  nand g1(stage1, stage1_ff, in0);
+  reg stage2_ff;
+  always @(posedge clk or posedge reset) begin
+    if (reset) stage2_ff <= 0;
+    else stage2_ff <= stage1_ff;
+  end
+  wire stage2;
+  xor g2(stage2, stage2_ff, in1);
+  reg stage3_ff;
+  always @(posedge clk or posedge reset) begin
+    if (reset) stage3_ff <= 0;
+    else stage3_ff <= stage2_ff;
+  end
+  wire stage3;
+  nor g3(stage3, stage3_ff, in0);
+  reg stage4_ff;
+  always @(posedge clk or posedge reset) begin
+    if (reset) stage4_ff <= 0;
+    else stage4_ff <= stage3_ff;
+  end
+  wire stage4;
+  nor g4(stage4, stage4_ff, in3);
+  assign out = stage4;
+endmodule
+",deep_pipeline,4,,5,5,,,5.0,5,5,1,4,6,0.25,1.2,5.0,5,7.5,0.8333333333333334,1.875,4,9.0
+pipe_2109,deep_pipeline,"module pipe_2109(in0, in1, clk, reset, out);
+  input clk, reset;
+  input in0, in1;
+  output out;
+  wire stage0;
+  or g0(stage0, in1, in0);
+  reg stage1_ff;
+  always @(posedge clk or posedge reset) begin
+    if (reset) stage1_ff <= 0;
+    else stage1_ff <= stage0;
+  end
+  wire stage1;
+  and g1(stage1, stage1_ff, in0);
+  reg stage2_ff;
+  always @(posedge clk or posedge reset) begin
+    if (reset) stage2_ff <= 0;
+    else stage2_ff <= stage1_ff;
+  end
+  wire stage2;
+  and g2(stage2, stage2_ff, in0);
+  assign out = stage2;
+endmodule
+",deep_pipeline,2,,3,3,,,3.0,3,3,4,4,4,1.0,1.3333333333333333,3.0,3,4.5,0.75,1.125,16,6.0
+multiclk_1228,multi_clock,"module multiclk_1228(in0, in1, clk1, clk2, reset, out);
+  input clk1, clk2, reset;
+  input in0, in1;
+  output out;
+  wire comb1;
+  and g0(comb1, in1, in0);
+  reg reg1;
+  always @(posedge clk1 or posedge reset) begin
+    if (reset) reg1 <= 0;
+    else reg1 <= comb1;
+  end
+  reg cross_domain;
+  always @(posedge clk2 or posedge reset) begin
+    if (reset) cross_domain <= 0;
+    else cross_domain <= reg1;
+  end
+  assign out = cross_domain;
+endmodule
+",multi_clock,2,,2,1,,2.0,,1,2,4,4,3,1.0,1.5,1.0,1,1.5,0.6666666666666666,0.375,16,2.25
+fanin_9736,high_fanin,"module fanin_9736(in0, in1, in2, in3, in4, in5, in6, in7, in8, out);
+  input in0, in1, in2, in3, in4, in5, in6, in7, in8;
+  output out;
+  wire w_0_0;
+  or g_0_0(w_0_0, in0, in1);
+  wire w_0_1;
+  or g_0_1(w_0_1, in2, in3);
+  wire w_0_2;
+  or g_0_2(w_0_2, in4, in5);
+  wire w_0_3;
+  or g_0_3(w_0_3, in6, in7);
+  wire w_1_0;
+  or g_1_0(w_1_0, w_0_0, w_0_1);
+  wire w_1_1;
+  or g_1_1(w_1_1, w_0_2, w_0_3);
+  wire w_2_0;
+  or g_2_0(w_2_0, w_1_0, w_1_1);
+  wire w_3_0;
+  or g_3_0(w_3_0, w_2_0, in8);
+  assign out = w_3_0;
+endmodule
+",high_fanin,9,,0,4,4.0,,,4,0,3,1,8,3.0,8.0,1.0,4,4.5,0.0,4.5,3,36.0
+pipe_9531,deep_pipeline,"module pipe_9531(in0, in1, clk, reset, out);
+  input clk, reset;
+  input in0, in1;
+  output out;
+  wire stage0;
+  and g0(stage0, in0, in0);
+  reg stage1_ff;
+  always @(posedge clk or posedge reset) begin
+    if (reset) stage1_ff <= 0;
+    else stage1_ff <= stage0;
+  end
+  wire stage1;
+  xor g1(stage1, stage1_ff, in1);
+  reg stage2_ff;
+  always @(posedge clk or posedge reset) begin
+    if (reset) stage2_ff <= 0;
+    else stage2_ff <= stage1_ff;
+  end
+  wire stage2;
+  or g2(stage2, stage2_ff, in1);
+  assign out = stage2;
+endmodule
+",deep_pipeline,2,,3,3,,,3.0,3,3,4,1,3,4.0,1.0,3.0,3,4.5,1.0,4.5,4,4.5
+pipe_9515,deep_pipeline,"module pipe_9515(in0, in1, in2, clk, reset, out);
+  input clk, reset;
+  input in0, in1, in2;
+  output out;
+  wire stage0;
+  xor g0(stage0, in0, in2);
+  reg stage1_ff;
+  always @(posedge clk or posedge reset) begin
+    if (reset) stage1_ff <= 0;
+    else stage1_ff <= stage0;
+  end
+  wire stage1;
+  nand g1(stage1, stage1_ff, in0);
+  reg stage2_ff;
+  always @(posedge clk or posedge reset) begin
+    if (reset) stage2_ff <= 0;
+    else stage2_ff <= stage1_ff;
+  end
+  wire stage2;
+  nor g2(stage2, stage2_ff, in2);
+  reg stage3_ff;
+  always @(posedge clk or posedge reset) begin
+    if (reset) stage3_ff <= 0;
+    else stage3_ff <= stage2_ff;
+  end
+  wire stage3;
+  nand g3(stage3, stage3_ff, in2);
+  assign out = stage3;
+endmodule
+",deep_pipeline,3,,4,4,,,4.0,4,4,2,1,5,2.0,1.25,4.0,4,6.0,0.8,6.0,2,7.5
+multiclk_9674,multi_clock,"module multiclk_9674(in0, in1, clk1, clk2, reset, out);
+  input clk1, clk2, reset;
+  input in0, in1;
+  output out;
+  wire comb1;
+  and g0(comb1, in1, in0);
+  reg reg1;
+  always @(posedge clk1 or posedge reset) begin
+    if (reset) reg1 <= 0;
+    else reg1 <= comb1;
+  end
+  reg cross_domain;
+  always @(posedge clk2 or posedge reset) begin
+    if (reset) cross_domain <= 0;
+    else cross_domain <= reg1;
+  end
+  assign out = cross_domain;
+endmodule
+",multi_clock,2,,2,1,,2.0,,1,2,4,2,3,2.0,1.5,1.0,1,1.5,0.6666666666666666,0.75,8,2.25
+comb_7217,simple_comb,"module comb_7217(in0, in1, out);
+  input in0, in1;
+  output out;
+  wire w0;
+  wire w1;
+  wire w2;
+  wire w3;
+  xor g0(w0, in1, in0);
+  and g1(w1, w0, in0);
+  nand g2(w2, w1, in0);
+  nor g3(w3, w2, in1);
+  assign out = w3;
+endmodule
+",simple_comb,2,4.0,0,4,,,,4,0,2,2,1,1.0,1.0,1.0,4,4.5,0.0,2.25,4,4.5
+fanin_4628,high_fanin,"module fanin_4628(in0, in1, in2, in3, in4, in5, in6, in7, in8, in9, in10, in11, in12, out);
+  input in0, in1, in2, in3, in4, in5, in6, in7, in8, in9, in10, in11, in12;
+  output out;
+  wire w_0_0;
+  or g_0_0(w_0_0, in0, in1);
+  wire w_0_1;
+  or g_0_1(w_0_1, in2, in3);
+  wire w_0_2;
+  or g_0_2(w_0_2, in4, in5);
+  wire w_0_3;
+  or g_0_3(w_0_3, in6, in7);
+  wire w_0_4;
+  or g_0_4(w_0_4, in8, in9);
+  wire w_0_5;
+  or g_0_5(w_0_5, in10, in11);
+  wire w_1_0;
+  or g_1_0(w_1_0, w_0_0, w_0_1);
+  wire w_1_1;
+  or g_1_1(w_1_1, w_0_2, w_0_3);
+  wire w_1_2;
+  or g_1_2(w_1_2, w_0_4, w_0_5);
+  wire w_2_0;
+  or g_2_0(w_2_0, w_1_0, w_1_1);
+  wire w_2_1;
+  or g_2_1(w_2_1, w_1_2, in12);
+  wire w_3_0;
+  or g_3_0(w_3_0, w_2_0, w_2_1);
+  assign out = w_3_0;
+endmodule
+",high_fanin,13,,0,4,4.0,,,4,0,3,3,12,1.0,12.0,1.0,4,4.5,0.0,1.5,9,54.0
+pipe_8340,deep_pipeline,"module pipe_8340(in0, in1, in2, clk, reset, out);
+  input clk, reset;
+  input in0, in1, in2;
+  output out;
+  wire stage0;
+  xor g0(stage0, in1, in1);
+  reg stage1_ff;
+  always @(posedge clk or posedge reset) begin
+    if (reset) stage1_ff <= 0;
+    else stage1_ff <= stage0;
+  end
+  wire stage1;
+  nor g1(stage1, stage1_ff, in1);
+  reg stage2_ff;
+  always @(posedge clk or posedge reset) begin
+    if (reset) stage2_ff <= 0;
+    else stage2_ff <= stage1_ff;
+  end
+  wire stage2;
+  nand g2(stage2, stage2_ff, in2);
+  reg stage3_ff;
+  always @(posedge clk or posedge reset) begin
+    if (reset) stage3_ff <= 0;
+    else stage3_ff <= stage2_ff;
+  end
+  wire stage3;
+  nor g3(stage3, stage3_ff, in2);
+  reg stage4_ff;
+  always @(posedge clk or posedge reset) begin
+    if (reset) stage4_ff <= 0;
+    else stage4_ff <= stage3_ff;
+  end
+  wire stage4;
+  xor g4(stage4, stage4_ff, in1);
+  reg stage5_ff;
+  always @(posedge clk or posedge reset) begin
+    if (reset) stage5_ff <= 0;
+    else stage5_ff <= stage4_ff;
+  end
+  wire stage5;
+  nor g5(stage5, stage5_ff, in0);
+  reg stage6_ff;
+  always @(posedge clk or posedge reset) begin
+    if (reset) stage6_ff <= 0;
+    else stage6_ff <= stage5_ff;
+  end
+  wire stage6;
+  xor g6(stage6, stage6_ff, in0);
+  assign out = stage6;
+endmodule
+",deep_pipeline,3,,7,7,,,7.0,7,7,3,3,0,1.0,0.0,7.0,7,10.5,,3.5,9,0.0
+comb_8245,simple_comb,"module comb_8245(in0, in1, in2, out);
+  input in0, in1, in2;
+  output out;
+  wire w0;
+  wire w1;
+  wire w2;
+  wire w3;
+  wire w4;
+  wire w5;
+  wire w6;
+  and g0(w0, in2, in0);
+  or g1(w1, w0, in2);
+  or g2(w2, w1, in2);
+  or g3(w3, w2, in1);
+  xor g4(w4, w3, in2);
+  or g5(w5, w4, in0);
+  nor g6(w6, w5, in0);
+  assign out = w6;
+endmodule
+",simple_comb,3,7.0,0,7,,,,7,0,4,4,5,1.0,5.0,1.0,7,7.5,0.0,1.875,16,37.5
+fanin_9771,high_fanin,"module fanin_9771(in0, in1, in2, in3, in4, in5, in6, in7, in8, in9, in10, in11, out);
+  input in0, in1, in2, in3, in4, in5, in6, in7, in8, in9, in10, in11;
+  output out;
+  wire w_0_0;
+  or g_0_0(w_0_0, in0, in1);
+  wire w_0_1;
+  or g_0_1(w_0_1, in2, in3);
+  wire w_0_2;
+  or g_0_2(w_0_2, in4, in5);
+  wire w_0_3;
+  or g_0_3(w_0_3, in6, in7);
+  wire w_0_4;
+  or g_0_4(w_0_4, in8, in9);
+  wire w_0_5;
+  or g_0_5(w_0_5, in10, in11);
+  wire w_1_0;
+  or g_1_0(w_1_0, w_0_0, w_0_1);
+  wire w_1_1;
+  or g_1_1(w_1_1, w_0_2, w_0_3);
+  wire w_1_2;
+  or g_1_2(w_1_2, w_0_4, w_0_5);
+  wire w_2_0;
+  or g_2_0(w_2_0, w_1_0, w_1_1);
+  wire w_3_0;
+  or g_3_0(w_3_0, w_2_0, w_1_2);
+  assign out = w_3_0;
+endmodule
+",high_fanin,12,,0,4,4.0,,,4,0,4,2,11,2.0,11.0,1.0,4,4.5,0.0,2.25,8,49.5
+pipe_5590,deep_pipeline,"module pipe_5590(in0, in1, clk, reset, out);
+  input clk, reset;
+  input in0, in1;
+  output out;
+  wire stage0;
+  and g0(stage0, in1, in1);
+  reg stage1_ff;
+  always @(posedge clk or posedge reset) begin
+    if (reset) stage1_ff <= 0;
+    else stage1_ff <= stage0;
+  end
+  wire stage1;
+  or g1(stage1, stage1_ff, in0);
+  reg stage2_ff;
+  always @(posedge clk or posedge reset) begin
+    if (reset) stage2_ff <= 0;
+    else stage2_ff <= stage1_ff;
+  end
+  wire stage2;
+  nand g2(stage2, stage2_ff, in0);
+  assign out = stage2;
+endmodule
+",deep_pipeline,2,,3,3,,,3.0,3,3,2,2,3,1.0,1.0,3.0,3,4.5,1.0,2.25,4,4.5
+multiclk_9843,multi_clock,"module multiclk_9843(in0, in1, in2, in3, clk1, clk2, reset, out);
+  input clk1, clk2, reset;
+  input in0, in1, in2, in3;
+  output out;
+  wire comb1;
+  xor g0(comb1, in1, in1);
+  reg reg1;
+  always @(posedge clk1 or posedge reset) begin
+    if (reset) reg1 <= 0;
+    else reg1 <= comb1;
+  end
+  reg cross_domain;
+  always @(posedge clk2 or posedge reset) begin
+    if (reset) cross_domain <= 0;
+    else cross_domain <= reg1;
+  end
+  assign out = cross_domain;
+endmodule
+",multi_clock,4,,2,1,,2.0,,1,2,3,3,0,1.0,0.0,1.0,1,1.5,,0.5,9,0.0
+multiclk_3248,multi_clock,"module multiclk_3248(in0, in1, in2, clk1, clk2, reset, out);
+  input clk1, clk2, reset;
+  input in0, in1, in2;
+  output out;
+  wire comb1;
+  and g0(comb1, in1, in0);
+  reg reg1;
+  always @(posedge clk1 or posedge reset) begin
+    if (reset) reg1 <= 0;
+    else reg1 <= comb1;
+  end
+  reg cross_domain;
+  always @(posedge clk2 or posedge reset) begin
+    if (reset) cross_domain <= 0;
+    else cross_domain <= reg1;
+  end
+  assign out = cross_domain;
+endmodule
+",multi_clock,3,,2,1,,2.0,,1,2,2,2,3,1.0,1.5,1.0,1,1.5,0.6666666666666666,0.75,4,2.25
+fanin_9648,high_fanin,"module fanin_9648(in0, in1, in2, in3, in4, in5, in6, in7, in8, out);
+  input in0, in1, in2, in3, in4, in5, in6, in7, in8;
+  output out;
+  wire w_0_0;
+  or g_0_0(w_0_0, in0, in1);
+  wire w_0_1;
+  or g_0_1(w_0_1, in2, in3);
+  wire w_0_2;
+  or g_0_2(w_0_2, in4, in5);
+  wire w_0_3;
+  or g_0_3(w_0_3, in6, in7);
+  wire w_1_0;
+  or g_1_0(w_1_0, w_0_0, w_0_1);
+  wire w_1_1;
+  or g_1_1(w_1_1, w_0_2, w_0_3);
+  wire w_2_0;
+  or g_2_0(w_2_0, w_1_0, w_1_1);
+  wire w_3_0;
+  or g_3_0(w_3_0, w_2_0, in8);
+  assign out = w_3_0;
+endmodule
+",high_fanin,9,,0,4,4.0,,,4,0,2,2,8,1.0,8.0,1.0,4,4.5,0.0,2.25,4,36.0
+pipe_2803,deep_pipeline,"module pipe_2803(in0, in1, clk, reset, out);
+  input clk, reset;
+  input in0, in1;
+  output out;
+  wire stage0;
+  xor g0(stage0, in0, in1);
+  reg stage1_ff;
+  always @(posedge clk or posedge reset) begin
+    if (reset) stage1_ff <= 0;
+    else stage1_ff <= stage0;
+  end
+  wire stage1;
+  or g1(stage1, stage1_ff, in1);
+  reg stage2_ff;
+  always @(posedge clk or posedge reset) begin
+    if (reset) stage2_ff <= 0;
+    else stage2_ff <= stage1_ff;
+  end
+  wire stage2;
+  nor g2(stage2, stage2_ff, in1);
+  assign out = stage2;
+endmodule
+",deep_pipeline,2,,3,3,,,3.0,3,3,2,1,4,2.0,1.3333333333333333,3.0,3,4.5,0.75,4.5,2,6.0
+multiclk_9687,multi_clock,"module multiclk_9687(in0, in1, in2, in3, clk1, clk2, reset, out);
+  input clk1, clk2, reset;
+  input in0, in1, in2, in3;
+  output out;
+  wire comb1;
+  xor g0(comb1, in3, in1);
+  reg reg1;
+  always @(posedge clk1 or posedge reset) begin
+    if (reset) reg1 <= 0;
+    else reg1 <= comb1;
+  end
+  reg cross_domain;
+  always @(posedge clk2 or posedge reset) begin
+    if (reset) cross_domain <= 0;
+    else cross_domain <= reg1;
+  end
+  assign out = cross_domain;
+endmodule
+",multi_clock,4,,2,1,,2.0,,1,2,2,1,3,2.0,1.5,1.0,1,1.5,0.6666666666666666,1.5,2,2.25
